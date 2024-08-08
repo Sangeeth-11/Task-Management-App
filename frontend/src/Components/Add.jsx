@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { toast } from 'react-toastify';
 import { addTask } from '../services/allApi';
+import { refreshContextApi } from '../ContextApi/RefreshContext';
 
 function Add() {
-
+    const {setRefresh} = useContext(refreshContextApi)
     const [show, setShow] = useState(false);
     const [data,setData] = useState({title:"",description:""})
     const handleClose = () => setShow(false);
@@ -26,6 +27,7 @@ function Add() {
             if (result.status==200) {
                 handleClose()
                 setData({title:"",description:""})
+                setRefresh(result.data)
             } else {
                 
             }

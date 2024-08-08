@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Dashboard.css'
 import Add from '../Components/Add'
 import ViewTask from '../Components/ViewTask'
 import { getTasks } from '../services/allApi'
+import { refreshContextApi } from '../ContextApi/RefreshContext'
 
 function Dashboard() {
   const [data, setData] = useState([])
+  const {refresh} = useContext(refreshContextApi)
   useEffect(() => {
     getData()
-  }, [])
+  }, [refresh])
   const getData = async () => {
     const result = await getTasks()
     if (result.status == 200) {
       setData(result.data)
     } else {
       console.log(result.response.data);
-
     }
-
   }
   return (
     <>
@@ -39,7 +39,7 @@ function Dashboard() {
                     <p className="card-text">{item.description}</p>
                     <p className="card-text">{item.status}</p>
                     <div className='button-group'>
-                      <ViewTask />
+                      <ViewTask id={item._id} />
                     </div>
 
                   </div>

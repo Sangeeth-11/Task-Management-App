@@ -13,3 +13,6 @@ export const addTask=async(data,header)=>{
 export const getTasks=async()=>{
     return await commonApi("GET",`${base_url}/api/tasks`,"")
 }
+export const getTask=async(id,header)=>{
+    return await commonApi("GET",`${base_url}/api/tasks/${id}`,"",header)
+}
