@@ -10,3 +10,6 @@ export const userLogin=async(data)=>{
 export const addTask=async(data,header)=>{
     return await commonApi("POST",`${base_url}/api/tasks`,data,header)
 }
+export const getTasks=async()=>{
+    return await commonApi("GET",`${base_url}/api/tasks`,"")
+}

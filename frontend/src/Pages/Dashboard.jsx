@@ -1,9 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Dashboard.css'
 import Add from '../Components/Add'
 import ViewTask from '../Components/ViewTask'
+import { getTasks } from '../services/allApi'
 
 function Dashboard() {
+  const [data, setData] = useState([])
+  useEffect(() => {
+    getData()
+  }, [])
+  const getData = async () => {
+    const result = await getTasks()
+    if (result.status == 200) {
+      setData(result.data)
+    } else {
+      console.log(result.response.data);
+
+    }
+
+  }
   return (
     <>
       <div className='container-main mt-5'>
@@ -11,21 +26,28 @@ function Dashboard() {
           <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
           <div className='add-button'>
 
-          <Add/>
+            <Add />
           </div>
         </div>
-        <div className='row mt-5'>
-          <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <div className='button-group'>
+        <div className='row m-2'>
+          {
+            data.length > 0 ?
+              data.map(item => (
+                <div className="card">
+                  <div className="card-body">
+                    <h5 className="card-title">{item.title}</h5>
+                    <p className="card-text">{item.description}</p>
+                    <p className="card-text">{item.status}</p>
+                    <div className='button-group'>
+                      <ViewTask />
+                    </div>
 
-                <ViewTask/>
+                  </div>
                 </div>
-                
-              </div>
-          </div>
+              ))
+              :
+              <p>No tasks</p>
+          }
         </div>
       </div>
     </>

@@ -25,8 +25,6 @@ exports.userRegister=async(req,res)=>{
 
 exports.userLogin = async(req,res)=>{
     const {email,password} =req.body
-    console.log(email,password);
-    
     try {
         const existingUser=await users.findOne({email})
         if (existingUser) {
@@ -34,7 +32,6 @@ exports.userLogin = async(req,res)=>{
             if (!comparePassword) {
                 res.status(406).json("incorrect password")
             } else {  
-                console.log("s");
                 const token = jwt.sign({userId:existingUser._id},process.env.secretkey)
                 res.status(200).json({token,username:existingUser.username})
             }
