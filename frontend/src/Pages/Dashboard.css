@@ -1,0 +1,38 @@
+.container-main{
+    max-width: 1000px;
+    width: 90%;
+    margin: 0 auto;;
+}
+.row-container{
+    display: flex;
+    justify-content: space-between;
+}
+.add-button{
+    width: 15%;
+}
+.row-container input{
+    width: 30%;
+}
+.card{
+    max-width: 22rem;
+}
+.button-group{
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width:750px){
+    .row-container{
+        flex-direction: column;
+    }
+    .add-button{
+        width: 100%;
+    }
+    .row-container input{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .card{
+        margin: 0 auto;
+    }
+}
