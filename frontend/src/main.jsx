@@ -5,13 +5,16 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import LoginContext from './ContextApi/LoginContext.jsx'
 import RefreshContext from './ContextApi/RefreshContext.jsx'
+import HeaderContext from './ContextApi/HeaderContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <LoginContext>
         <RefreshContext>
-          <App />
+          <HeaderContext>
+            <App />
+          </HeaderContext>
         </RefreshContext>
       </LoginContext>
     </BrowserRouter>

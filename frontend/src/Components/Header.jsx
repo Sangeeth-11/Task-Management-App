@@ -9,7 +9,7 @@ function Header() {
   useEffect(() => {
     if (sessionStorage.getItem('token')) {
       setLogStatus(true)
-      setUsername(sessionStorage.getItem('username'))
+      setUsername(JSON.parse(sessionStorage.getItem('User')))
     }
   }, [logStatus])
   const logout=()=>{
@@ -37,7 +37,7 @@ function Header() {
                       logStatus?
                       <div className='w-100 mx-3'>
                         <i className='fa fa-user'></i>
-                       <span>{username}</span>
+                       <span>{username.username}</span>
                         <button  className="btn btn-outline-success ms-3" onClick={logout}><i className="fa-solid fa-right-from-bracket"></i>Logout</button>
                       </div>:
                       <Link to={'/login'} className="btn btn-outline-success" type="submit">Login</Link>

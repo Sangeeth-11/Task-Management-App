@@ -28,7 +28,7 @@ function Login() {
         setLogState(false)
         setLogStatus(true)
         sessionStorage.setItem("token",result.data.token)
-        sessionStorage.setItem("username",result.data.username)
+        sessionStorage.setItem("User",JSON.stringify(result.data.existingUser))
         navigate('/')
       } else {
         toast.error(result.response.data)

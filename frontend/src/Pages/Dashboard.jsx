@@ -33,7 +33,7 @@ function Dashboard() {
           {
             data.length > 0 ?
               data.map(item => (
-                <div className="card">
+                <div className="card" key={item._id}>
                   <div className="card-body">
                     <h5 className="card-title">{item.title}</h5>
                     <p className="card-text">{item.description}</p>

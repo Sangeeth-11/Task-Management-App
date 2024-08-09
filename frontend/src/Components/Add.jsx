@@ -6,13 +6,21 @@ import Form from 'react-bootstrap/Form';
 import { toast } from 'react-toastify';
 import { addTask } from '../services/allApi';
 import { refreshContextApi } from '../ContextApi/RefreshContext';
+import { loginContextApi } from '../ContextApi/LoginContext';
 
 function Add() {
     const {setRefresh} = useContext(refreshContextApi)
+    const {logStatus} = useContext(loginContextApi)
     const [show, setShow] = useState(false);
     const [data,setData] = useState({title:"",description:""})
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        if (logStatus) {
+            setShow(true)
+        } else {
+           toast.warning("plz login....") 
+        }
+    }
     const handleAdd=async()=>{
         const {title,description}=data
         if (!title || !description) {
