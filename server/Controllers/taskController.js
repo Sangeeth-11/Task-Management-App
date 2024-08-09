@@ -50,3 +50,20 @@ exports.deleteTask=async(req,res)=>{
         res.status(404).json(err.message)
     }
 }
+
+exports.searchTask =async(req,res)=>{
+    const {search}=req.params
+    try {
+        const query = {
+            title:{$regex:search,$options:"i"}
+        }
+        const result = await tasks.find(query)
+        if (result) {
+            res.status(200).json(result)
+        } else {
+            result.status(401).json("no users")
+        }
+    } catch (error) {
+        res.status(404).json(error.message)
+    }
+}

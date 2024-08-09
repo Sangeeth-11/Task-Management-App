@@ -19,3 +19,12 @@ export const getTask=async(id,header)=>{
 export const deleteTask=async(id,header)=>{
     return await commonApi("DELETE",`${base_url}/api/tasks/${id}`,{},header)
 }
+export const searchTask=async(search)=>{
+    return await commonApi("GET",`${base_url}/api/tasks_search/${search}`,"")
+}
+
+export const updateTask=async(data,id,header)=>{
+    return await commonApi("PUT",`${base_url}/api/tasks/${id}`,data,header)
+}
+
+
